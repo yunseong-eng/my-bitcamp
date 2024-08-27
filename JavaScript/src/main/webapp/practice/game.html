@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	body {
+		text-align: center;
+	}
+	.buttons img {
+		width: 100px;
+		height: 100px;
+		cursor: pointer;
+		margin: 10px;
+	}
+	.result {
+		margin-top: 20px;
+		font-size: 20px;
+	}
+	.game-info {
+		margin-top: 20px;
+	}
+	#resultText {
+		color: blue;
+		margin-bottom: 10px;
+	}
+	#outcomeText {
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<h3>가위 바위 보</h3>
+
+	<div class="game-info">
+		<p>잔액 : <span id="balance">0</span>원</p>
+		<p>돈을 입력하세요 : <input type="number" id="moneyInput" value="500"> 
+			<button onclick="startGame()">시작</button></p>
+	</div>
+	
+	<div class="buttons">
+        <img src="../image/가위.png" alt="가위" onclick="playGame(1)">
+        <img src="../image/바위.png" alt="바위" onclick="playGame(2)">
+        <img src="../image/보자기.png" alt="보자기" onclick="playGame(3)">
+    </div>
+    
+    <div class="result">
+        <p id="resultText"></p>
+        <p id="outcomeText"></p>
+    </div>
+    
+    <script>
+        let balance = 0;
+
+        function startGame() {
+            balance = parseInt(document.getElementById('moneyInput').value);
+            document.getElementById('balance').innerText = balance;
+        }
+
+        function playGame(playerChoice) {
+            if(balance < 100) {
+                alert("잔액이 부족합니다! 더 충전해주세요...");
+                return;
+            }
+
+            const choices = ['가위', '바위', '보자기'];
+            const computerChoice = Math.floor(Math.random() * 3) + 1;
+            let result = '';
+            
+            if(playerChoice == computerChoice) {
+                result = '비겼다';
+            }else if (
+                (playerChoice == 1 && computerChoice == 3) ||
+                (playerChoice == 2 && computerChoice == 1) ||
+                (playerChoice == 3 && computerChoice == 2)
+            ) {
+                result = '이겼다!';
+            }else {
+                result = '졌다ㅠㅠ';
+            }
+
+            balance -= 100;
+            document.getElementById('balance').innerText = balance;
+
+            document.getElementById('resultText').innerText = "컴퓨터 : " + choices[computerChoice - 1] + "\n나 : " + choices[playerChoice - 1];
+            document.getElementById('outcomeText').innerText = result;
+        }
+    </script>
+</body>
+</html>

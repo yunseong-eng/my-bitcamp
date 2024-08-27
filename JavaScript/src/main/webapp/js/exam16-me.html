@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+        .result {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>1~10 사이에 덧셈 문제를 발생합니다.</h3>
+    <input type="button" value="문제 생성" onclick="start()" />
+    <div id="question"></div>
+    <div id="answer"></div>
+
+    <script type="text/javascript">
+        let sumResult = 0;
+
+        function sum(x, y) {
+            return x + y;
+        }
+
+        function start() {
+            let x = Math.floor(Math.random() * 10) + 1;
+            let y = Math.floor(Math.random() * 10) + 1;
+            sumResult = sum(x, y);
+
+            //문제와 결과보기 버튼
+            document.getElementById('question').innerHTML = x + " + " + y + " = ? ";
+            document.getElementById('question').innerHTML += '<input type="button" value="결과보기" onclick="showResult()" />';
+            
+            //정답을 숨김상태
+            document.getElementById('answer').innerHTML = '<span class="result">' + sumResult + '</span>';
+        }
+
+        function showResult() {
+            //답을 빨간색으로
+            document.querySelector('.result').style.display = 'inline';
+        }
+    </script>
+</body>
+</html>

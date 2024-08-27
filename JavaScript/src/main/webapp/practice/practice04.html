@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장훈 game</title>
+    <style type="text/css">
+        button {
+            width: 200px;
+            height: 200px;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        button img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>가위 바위 보 게임</h3>
+    <div>
+        <button type="button" onclick="playGame(1)">
+            <img src="../image/scissors.png" alt="가위">
+        </button>
+        <button type="button" onclick="playGame(2)">
+            <img src="../image/rock.png" alt="바위">
+        </button>
+        <button type="button" onclick="playGame(3)">
+            <img src="../image/paper.png" alt="보자기">
+        </button>
+    </div>
+    <div id="result"></div>
+    <div id="money"></div>
+    <script type="text/javascript">
+        function startGame() {
+            gameMoney = parseInt(prompt("게임 머니를 입력하세요 :", "1000"), 10);
+
+            if (isNaN(gameMoney) || gameMoney <= 0) {
+                alert("게임 머니는 양수 숫자여야 합니다.");
+                return;
+            }
+            document.getElementById('status').innerHTML = "보유 게임 머니 : " + gameMoney;
+        }
+        function playGame(userChoice) {
+            if (gameMoney <= 0) {
+                alert("게임 머니가 부족합니다. 게임을 종료합니다.");
+                return;
+            }
+            const choices = ['가위', '바위', '보']; // 0: 가위, 1: 바위, 2: 보
+            const computerChoice = Math.floor(Math.random() * 3) + 1; // 1, 2, 3
+
+            let result = '';
+
+            if (userChoice == 1 && computerChoice == 3) 
+                result = '이겼습니다!';
+             else if (userChoice == 2 && computerChoice == 1) 
+                result = '이겼습니다!';
+             else if (userChoice == 3 && computerChoice == 2) 
+                result = '이겼습니다!';
+            
+            else if (userChoice == computerChoice) 
+                result = '무승부!';
+
+            else 
+                result = '졌습니다!';
+            
+            document.getElementById('result').innerHTML =
+                "당신 : " + choices[userChoice - 1] + "<br>" + "컴퓨터 : " + choices[computerChoice - 1] + "<br>" + "결과 : " + result;
+
+            gameMoney -= 100;
+            if (gameMoney <= 0) {
+                gameMoney = 0; // 게임머니를 0으로 설정
+                document.getElementById('money').innerHTML = "게임 종료! 최종 게임 머니 :" + gameMoney;
+            } else {
+                document.getElementById('money').innerHTML = "현재 게임 머니 :" + gameMoney;
+            }
+        }
+        
+        startGame();
+    </script>
+</body>
+
+</html>

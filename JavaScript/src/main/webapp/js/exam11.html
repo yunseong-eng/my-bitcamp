@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수 return 설명</title>
+</head>
+<body>
+
+<script type="text/javascript">
+function f(x, y) {
+	let z = x + y;
+	
+	if (z < 10) {
+		return; //함수를 벗어나라
+	}
+	return z; //반환
+}
+
+let a = f(2, 1); //return으로 그냥 빠져서 a에 줄 값이 없어서 error undefined 나옴
+let b = f(5, 7); //return z 에 12가 들어감
+let c = f(10.9, 5.4);
+let d = f("사과", "딸기")
+
+document.write("<h3>" + a + "</h3>"); //undefined
+document.write("<h3>" + b + "</h3>");
+document.write("<h3>" + c + "</h3>");
+document.write("<h3>" + d + "</h3>");
+</script>
+</body>
+</html>

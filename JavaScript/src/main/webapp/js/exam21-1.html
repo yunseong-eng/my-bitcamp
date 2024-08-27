@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>배열 합치기, 삭제, 추가</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	//concat => 배열합치기, 합치면서 새로운 배열이 생성, 원본은 변경x
+	let arr1 = [10, 20, 30];
+	let arr2 = ["사과", "딸기", "바나나"];
+	let arr3 = arr1.concat(); //복사본
+	let arr4 = arr1.concat(arr2);
+	
+	document.write("arr1 = " + arr1 + "<br>")
+	document.write(`arr2 = ${arr2}<br>`)
+	document.write(`arr3 = ${arr3}<br>`)
+	document.write(`arr4 = ${arr4}<br>`)
+	document.write("<hr/>");
+	
+	//join - 배열을 문자열로 만든다.
+	let str1 = arr1.join(); //구분자가 없으면 , 가 자동으로 들어가서 문자열로 만든다.
+	document.write(`str1 = ${str1}<br>`)
+	
+	let str2 = arr1.join("|"); //배열 요소 사이에 구분자(|)를 넣어서 문자열로 만든다.
+	document.write(`str2 = ${str2}<br>`)
+	document.write("<hr/>");
+	
+	//--배열 요소 추가--
+	//push - 뒤에 추가
+	//unshift - 앞에 추가
+	arr1.push(40);
+	arr1.push(50);
+	document.write(`arr1 = ${arr1}<br>`)
+	
+	arr2.push("복숭아", "귤");
+	document.write(`arr2 = ${arr2}<br>`)
+	
+	arr2.unshift("망고");
+	document.write(`arr2 = ${arr2}<br>`)
+	document.write("<hr/>");
+	
+	//--배열 요소 삭제--
+	//pop -- 뒤에 삭제 
+	//shift --앞에 삭제
+	
+	arr1.pop(); //배열 요소 삭제
+	document.write(`arr1 = ${arr1}<br>`)
+	
+	let num = arr1.pop(); //배열 요소를 꺼내서 num에 저장하고 삭제
+	document.write(`num = ${num}<br>`) 
+	document.write(`arr1 = ${arr1}<br>`)
+	
+	let str = arr2.shift() //배열 요소를 꺼내서 str에 저장하고 삭제
+	document.write(`str = ${str}<br>`) 
+	document.write(`arr2 = ${arr2}<br>`)
+	document.write("<hr/>");
+	
+	//splice() - 선언배열 요소 추가/삭제(기존배열입장)
+	//		   - 원본 변경
+	let arr5 = arr2.splice(2); //splice(인덱스)
+	document.write(`arr2 = ${arr2}<br>`)
+	document.write(`arr5 = ${arr5}<br>`)
+	
+	let arr6 = arr5.splice(1, 1); //splice(인덱스, 개수)
+	document.write(`arr5 = ${arr5}<br>`)
+	document.write(`arr6 = ${arr6}<br>`)
+	
+	let arr7 = arr5.splice(1, 0, "딸기"); //splice(인덱스, 개수, 추가)
+	document.write(`arr5 = ${arr5}<br>`)
+	document.write(`arr7 = ${arr7}<br>`)
+	document.write("<hr/>");
+	//slice() - 배열 요소 꺼내기
+	//		  - 원본 변경X
+	let arr8 = arr1.concat(40, 50, 60); //값이 별로 없어서 concat으로 값을 넣어준거다. //만약 push를 쓰면 arr1(원본)도 바뀐다.
+	document.write(`arr1 = ${arr1}<br>`)
+	document.write(`arr8 = ${arr8}<br>`)
+	document.write("<hr/>");
+	
+	let arr9 = arr8.slice(4); //slice(인덱스) - 인덱스부터 끝까지 값을 꺼내온다.
+	document.write(`arr8 = ${arr8}<br>`)
+	document.write(`arr9 = ${arr9}<br>`)
+	
+	let arr10 = arr8.slice(2, 4); //slice(인덱스, 인덱스)- 인덱스부터 (인덱스 -1)까지 2~(4이전까지)
+	document.write(`arr10 = ${arr10}<br>`)
+</script>
+</body>
+</html>

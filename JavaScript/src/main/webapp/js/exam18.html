@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>doPrint</title>
+<script type="text/javascript">
+function doPrint(num) { //구현
+	let msg = "doPrint()가 " + num + "회 실행되었습니다.";
+	alert(msg);
+	document.getElementById("myid").innerHTML = msg; /* 아직 myid를 안만나서 error가 난다. */
+}
+
+doPrint(1); //호출
+</script>
+</head>
+<body>
+	<script type="text/javascript">
+		doPrint(2); //호출
+	</script>
+	
+	<h1 id="myid">안녕하세요.</h1> <!-- script가 덮어서 안녕하세요는 안나온다. -->
+	
+	<script type="text/javascript">
+		doPrint(3); //호출
+	</script>
+</body>
+</html>

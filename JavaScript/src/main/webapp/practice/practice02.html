@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+    <h2>구구단 정리</h2>
+    <script type="text/javascript">
+        function insertNum() {
+            let dan = prompt("숫자를 입력하세요(2 ~ 9) : ", "");
+
+            if(dan !== null && !isNaN(dan) && dan>=2 && dan<=9) {
+                let result = "";
+                for(let i=1; i<=9; i++) {
+                    result += `${dan}*${i} = ${dan * i}<div/>`;
+                }
+                document.write(result);
+            } else {
+                alert("숫자를 입력하세요(2 ~ 9)");
+            }
+        }
+
+        insertNum();
+    </script>
+</body>
+</html>

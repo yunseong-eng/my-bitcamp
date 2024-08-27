@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>정진범 로또</title>
+<style type="text/css">
+body {
+    text-align: center;
+}
+
+div {
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 50px;
+    font-size: 35pt;
+}
+</style>
+
+</head>
+
+<body>
+    <h1>로또 번호를 생성하세요</h1>
+    <input type="button" value="번호 생성" onclick="start()">
+    <br>
+    <br>
+    <div id="num1"></div>
+    <div id="num2"></div>
+    <div id="num3"></div>
+    <div id="num4"></div>
+    <div id="num5"></div>
+    <div id="num6"></div>
+
+</body>
+<script type="text/javascript">
+    function start() {
+        let arr = []; 
+        
+        while (arr.length < 6) {
+            let result = Math.floor(Math.random() * 45 + 1);
+            
+            if (arr.indexOf(result) === -1) {
+                arr.push(result);
+            }
+        }
+        
+        arr.sort(function sort(a, b) {
+            return a - b;
+        });
+        
+        for (let i = 0; i < 6; i++) {
+            let div = document.getElementById("num" + (i + 1));
+            if (arr[i] < 10) {
+                div.style.backgroundColor = 'yellow';
+            } else if (arr[i] < 20) {
+                div.style.backgroundColor = 'blue';
+            } else if (arr[i] < 30) {
+                div.style.backgroundColor = 'red';
+            } else if (arr[i] < 40) {
+                div.style.backgroundColor = 'gray';
+            } else {
+                div.style.backgroundColor = 'green';
+            }
+            div.innerText = arr[i];
+        }
+    }
+</script>
+</html>

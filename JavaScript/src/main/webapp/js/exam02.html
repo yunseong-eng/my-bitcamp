@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	let num;  //let은 지역변수 
+	let msg; 
+	
+	num = 12345;
+	msg = 'Hello';
+	
+	document.write(num + "<br>")
+	document.write(msg + "<br>")  //한줄에 한문장이면 ; 안써도됨 
+	
+	num = "aaa";
+	document.write(num + "<br>");
+	
+	let exist = true; //boolean
+	document.write(exist + "<br>");
+	
+	let value1 = null;
+	let value2;
+	
+	document.write(value1 + "<br>");
+	document.write(value2 + "<br>"); //자바였으면 null로 나와야할텐데 script는 값이 없으면 undefined 가 나온다
+</script>
+</body>
+</html>
+
+<!-- 
+변수
+- 변수의 자료형은 값이 할당될 때 자동으로 결정된다.
+- let(들어오는 데이터에 따라 맞춰짐), let, const(상수)으로 선언
+
+//선언 => 선언은 굳이 안해도 결과가나옴
+let a; 
+let b;
+
+//할당
+a = 10; 
+b = 43.5;
+ -->

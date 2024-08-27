@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    function days() { //구현
+        let dateInput = prompt("처음 만난 날 (yyyy/mm/dd)");
+        
+        let startDate = new Date(dateInput); //입력된 문자열을 Date객체로 변환
+        
+        //날짜가 잘못된 형식으로 입력됐을때
+        if (isNaN(startDate)) {
+            alert("유요한 날짜를 입력하세요.");
+        } else {
+            let today = new Date(); 
+            let time = today.getTime() - startDate.getTime(); 
+            let day = Math.round(time/(60*60*24*1000)); //초를 일로 변환
+
+            document.write(`<h2>지혜와 함께한지 ${day}일이다.</h2>`);
+        }
+    }
+    days(); //호출
+</script>
+
+</body>
+</html>

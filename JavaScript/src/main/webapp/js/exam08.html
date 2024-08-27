@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>반복문</title>
+</head>
+<body>
+
+<script type="text/javascript">
+//반복문
+let sum = 0;
+//let i; => let을 쓰고싶을떈 let을 반복문에서 빼서 위에 적어야됨
+for(let i=1; i<=10; i++){
+	document.write("i = " + i + "<br>");
+	sum += i;
+}//for
+
+document.write("<h3>탈출 i = " + i + "</h3>"); //let 지역변수가 지역을 벗어나서 error가 난다. so => let로 바꿈
+document.write("<h1>1부터 10까지의 합은 " + sum + "입니다.</h1>");
+
+/* 
+Uncaught ReferenceError: i is not defined
+error가 났다고 화면에는 표시되지 않는다
+F12(개발자 도구)에서 확인하면 error를 볼 수 있다
+=> 해결방법은 let i를 for문 위에서 선언하거나 또는 let i로 바꾼다
+*/
+</script>
+</body>
+</html>

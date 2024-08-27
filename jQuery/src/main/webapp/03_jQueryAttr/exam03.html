@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>전체 선택 기능 구현하기</h1>
+	<form name="form1">
+		<fieldset>
+			<legend>취미</legend>
+			<p>
+				<input type="checkbox" id="all_check" value="Y" />
+				<label for="all_check">전체선택 / 해제</label>	
+			</p>
+			<p>
+				<input type="checkbox" id="hobby1" class="hobby_check" value="축구" />
+				<label for="hobby1">축구</label>
+				<input type="checkbox" id="hobby1" class="hobby_check" value="농구" />
+				<label for="hobby1">농구</label>
+				<input type="checkbox" id="hobby1" class="hobby_check" value="야구" />
+				<label for="hobby1">야구</label>
+			</p>	
+		</fieldset>		
+	</form>
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#all_check').change(function(){
+		let isChk = $(this).is(':checked')
+		console.log(isChk)
+			
+		//$('.hobby_check').attr('checked', isChk)
+		$('.hobby_check').prop('checked', isChk)
+	});
+	//[문제] 전체 선택 후 1개라도 해제하면 all_check는 해제로 바뀌어야한다.
+	/* 
+	$('#hobby1').change(function(){
+	let isAllChecked = $('#hobby1').length == $('#hobby1:checked').length; //전체갯수와 체크된 갯수 비교
+	$('#all_check').prop('checked', isAllChecked);  
+	*/ //id 값은 중복이 안된다.
+	
+	$('.hobby_check').change(function(){
+	let isAllChecked = $('.hobby_check').length == $('.hobby_check:checked').length; //전체갯수와 체크된 갯수 비교
+	$('#all_check').prop('checked', isAllChecked);  
+	});
+	//전체선택 true, 일부선택 false 만약 false 라면 체크가 해제
+});
+</script>
+</body>
+</html>
+
+<!-- 
+.attr을 사용하면 전체선택/전체해제가 잘된다.
+but 전체선택 후 하나를 선택 or 해제하면 그 부분이 반응하지 않는다.
+=> 해결방법 : 문자열로 집어넣지말고 .prop값으로 넣자
+ -->
+
+<!-- 
+[문제] 전체 선택 후 1개라도 해제하면 all_check는 해제로 바뀌어야한다.
+ -->
+
+
+
+

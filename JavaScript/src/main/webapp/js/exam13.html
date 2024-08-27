@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>숫자형식 NaN</title>
+</head>
+<body>
+
+<script type="text/javascript">
+let a = Number("a");
+document.write("a= " + a + "<br>"); //NaN (Not a Number) => 숫자형식이 아닙니다.
+
+let sum = a + 1; //NaN + 1
+document.write("sum = " + sum + "<br>"); //NaN
+
+let str = a + "str"; //NaN + "str"
+document.write("str = " + str + "<br>"); //NaNstr
+document.write("<br>");
+
+let v1 = "가나다라";
+let v2 = "123456";
+
+let is_num1 = ! isNaN(v1); //false 가나다라는 숫자형식이 아닙니까? 를 !
+let is_num2 = ! isNaN(v2); //true 123456은 숫자형식이 아닙니까? 를 !
+
+if (is_num1)
+	document.write(v1 + "은(는) 숫자 입니다.<br>");
+else
+	document.write(v1 + "은(는) 숫자가 아닙니다.<br>");
+
+if (is_num2) {
+	document.write(v2 + "은(는) 숫자 입니다.<br>");
+}else {
+	document.write(v2 + "은(는) 숫자가 아닙니다.<br>");
+}
+document.write("<br>");
+
+function sumInt(x, y) { //구현
+	let isStrX = ! isNaN(x); 
+	let isStrY = ! isNaN(y);
+	if (! isStrX || ! isStrY) { // ||(or) 연산자는 둘중에 하나만 맞아도됨
+		return "숫자 형태이거나 숫자값이 전달되어야 합니다.";
+	}
+	let result = parseInt(x) + parseInt(y);
+	return result;
+}
+
+document.write(sumInt("a", 1) + "<br>"); //x에서 이미 숫자가 아니므로 "숫자 형태이거나 숫자값이 전달되어야 합니다."
+document.write(sumInt("1", "2") + "<br>"); //3
+document.write(sumInt(100, "5.6") + "<br>"); //105
+document.write(sumInt(-1, "-100") + "<br>"); //-101
+
+	
+		
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>흐른시간 날짜보기</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	let today = new Date();
+	let time = today.getTime(); 
+	
+	document.write(`time = ${time} <br/>`); //기준이 1970년 1월 1일 자정이후 부터 오늘까지 흐른시간을 보여줌
+	document.write(`${ Math.round(time/(60*60*24*1000)) }일`);
+</script>
+</body>
+</html>

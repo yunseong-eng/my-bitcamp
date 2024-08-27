@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>전준수님 코드</title>
+</head>
+<!-- <body onload="insertDate()"> -->
+<body>
+
+    <h1>오늘의 날짜: <span id="Today"></span></h1>
+    <h1>우리가 만난 날: <span id="MetDate"></span></h1>
+    <h1>오늘까지 우리는 <span id="Since"></span>일이다.</h1>
+
+<script type="text/javascript">
+
+window.onload = function(){
+	insertDate();
+}
+
+let year, month, date;
+
+function insertDate() {
+    year = parseInt(prompt("년도를 입력해주세요 (ex:2000)")); 
+    month = parseInt(prompt("월을 입력해주세요 (ex:1~12)"));     
+    date = parseInt(prompt("날짜를 입력해주세요 (ex:1~31)"));    
+    document.getElementById("MetDate").innerHTML = `${year}년 ${month}월 ${date}일`;
+    
+    dateInfo();   
+}
+
+
+function dateInfo() {
+    let today = new Date(); //시스템의 날짜(오늘)
+    let metDate = new Date(year, month-1, date);  //Date 객체에서 월은 0부터 11이므로 입력값 -1 
+    let timeToday = today.getTime(); 
+    let timeMetDate = metDate.getTime(); 
+    let since = timeToday - timeMetDate; 
+    
+    if (since<0) {
+        alert("날짜를 다시 입력해주세요");
+        location.reload(); 
+    } else {
+        let Count = Math.floor(since / (1000*60*60*24));
+        document.getElementById("Since").innerHTML = Count;  
+        document.getElementById("Today").innerHTML = today.toLocaleString();
+    }
+}
+</script>
+
+</body>
+</html>

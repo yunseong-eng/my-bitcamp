@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p {
+	background: #90D000;
+	padding: 20px;
+	width: 300px;
+}
+#round1 { border-radius: 50px; } /* 시계방향 - top(왼쪽 위 꼭지점), right(오른쪽위), bottom(오른쪽아래), left(왼쪽아래) 순서로 넘어감 */
+#round2 { border-radius: 0 20px 40px 60px; } /* 0을뺀 나머지는 단위가 들어가야됨 */
+#round3 { border-radius: 0 20px 40px; } /* 시계방향 - top, right/left(같이), bottom */
+#round4 { border-radius: 0 20px; } /* 시계방향 - top/bottom, right/left */
+#round5 { 
+	border-radius : 50px; 
+	border-style: dotted;
+}
+</style>
+</head>
+<body>
+	<h3>둥근 모서리 테두리</h3>
+	<hr>
+	<p id="round1">반지를 50픽셀의 둥근 모서리</p>
+	<p id="round2">반지를 0, 20, 40, 60 둥근 모서리</p>
+	<p id="round3">반지를 0, 20, 40, 20 둥근 모서리</p>
+	<p id="round4">반지를 0, 20, 0, 20 둥근 모서리</p>
+	<p id="round5">반지를 50의 둥근 점선 모서리</p>
+</body>
+</html>

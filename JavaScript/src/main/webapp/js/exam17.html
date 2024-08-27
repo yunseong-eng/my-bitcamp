@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>onload</title>
+<script type="text/javascript">
+function insertQuestion(num) { //구현
+	alert(num);
+	
+	let str = prompt("사칙연산의 수식을 입력하세요. (예: 100+50)", "");
+	let answer = eval(str); //입력받은 문자열을 수식으로 변환
+	let result = "<font color='red'>" +str + " = " + answer + "</font>";
+	
+	document.getElementById("question").innerHTML = result;
+}
+</script>
+</head>
+<body onload="insertQuestion(222)"> <!-- onload => <body>태그를 다 읽어야 onload가 처리된다 -->
+	<script type="text/javascript">
+		insertQuestion(111); /* 여기서 올라가기때문에 error가 난다. */
+	</script>
+	
+	<h1 id= "question"></h1>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>증감 연산자</title>
+</head>
+<body>
+
+<script type="text/javascript">
+//증감 연산자
+let num = 5;
+
+num++; //후행 6
+document.write("num = " + num + "<br>");
+
+++num; //선행 7
+document.write("num = " + num + "<br>");
+
+let num2 = num++; //후행
+document.write("num = " + num + "&emsp; num2 = " + num2 + "<br>");
+
+let num3 = ++num; //선행
+document.write("num = " + num + "&emsp; num3 = " + num3 + "<br>");
+
+let num4 = ++num2 * num3--;
+document.write("num2 = " + num2
+			+ "&emsp; num3 = " + num3
+			+ "&emsp; num4 = " + num4 + "<br>");
+			
+/* 
+1. ++num2 => 8
+
+2. let num4 = num2 * num3 => 8 * 9 = 72
+
+3. num3-- => 8
+*/
+
+</script>
+</body>
+</html>

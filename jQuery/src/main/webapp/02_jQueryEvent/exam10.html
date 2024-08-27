@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/event.css">
+</head>
+<body>
+	<h1>회원가입</h1>
+	<form name="form1" action="form_ok.html">
+		<div id="input">
+			<h3>당신의 이름은 무엇입니까?</h3>
+			<input type="text" name="user_name" />
+			<input type="submit" value="저장하기" class="myButton" /> <!-- submit은 form안에 있어야한다. -->
+			<input type="reset" value="다시작성" class="myButton" />
+		</div>
+	</form>
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('form[name="form1"]').submit(function(){
+		if( !confirm('정말로 저장 하시겠습니까?')){
+			return false;
+		}
+	});
+	
+	$('input[type="reset"]').click(function(){
+		if( !confirm('정말로 취소 하시겠습니까?')){
+			return false;
+		}
+	});
+});
+</script>
+</body>
+</html>
