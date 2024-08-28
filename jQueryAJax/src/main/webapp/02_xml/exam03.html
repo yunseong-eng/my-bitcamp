@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아이디 중복검사</title>
+<link rel="stylesheet" href="../css/common.css"> 
+<link rel="stylesheet" href="../css/reset.css"> 
+<style type="text/css">
+#idDiv {
+	color: red; /* 텍스트 색상 설정 */
+	font-size: 9pt; /* 텍스트 크기 설정 */
+	font-weight: bold; /* 텍스트를 굵게 설정 */
+	padding: 10px; /* div 안의 내용과 경계 사이에 여백을 설정 */
+}
+</style>
+</head>
+<body>
+	<h1 class="title">아이디 중복검사</h1> <!-- 페이지의 제목을 나타내는 큰 글씨 -->
+	<div class="exec">
+	<form>
+		<input type="text" name="user_id" placeholder="아이디 입력" /> <!-- 사용자로부터 아이디를 입력받는 텍스트 박스 -->
+		<input type="button" id="checkId" value="중복검사" /> <!-- '중복검사' 버튼, 클릭 시 중복 검사를 수행 -->
+		<div id="idDiv"></div> <!-- 아이디 검사 결과를 표시할 공간 -->
+	</form>
+		</div>
+		<div class="console"></div> <!-- 서버로부터 받은 응답을 보여주는 공간 -->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// '중복검사' 버튼을 클릭하면 실행되는 코드
+	$('#checkId').click(function(){
+	// '아이디 입력안함' 메시지를 지우기 위해 'idDiv'를 비운다.
+	$('#idDiv').empty(); 
+
+	// 사용자가 입력한 아이디 값을 가져온다.
+	let user_id = $('input[name="user_id"]').val();
+	if(!user_id) {
+		// 입력이 없으면 'idDiv'에 '아이디 입력안함' 메시지를 표시하고, 입력 필드에 포커스를 맞춘다.
+		$('#idDiv').text('아이디 입력안함');
+		$('input[name="user_id"]').focus();
+		return false; // 이후 코드를 실행하지 않고 함수를 종료한다.
+	}
+	// 서버와의 통신을 시작한다.
+	$.get(
+		//'../checkId/checkId.jsp', // 원래 URL (주석처리됨)
+		'../checkId/checkId_JSTL.jsp', // 데이터를 요청할 실제 URL
+		{'user_id':user_id }, // 서버에 보낼 데이터, 여기서는 입력한 아이디
+		function(data){
+			// 서버로부터 받은 응답을 콘솔에 출력한다.
+			console.log(data);
+			console.log($(data)); // jQuery를 이용해 응답을 jQuery 객체로 변환하여 출력
+			
+			// 서버 응답에서 'result'라는 태그의 텍스트를 가져온다.
+			let result_text = $(data).find('result').text(); // 서버에서 'true' 또는 'false' 문자열을 가져온다.
+			
+			// 문자열을 불리언(boolean) 값으로 변환한다.
+			let result = eval(result_text);
+			
+			// 아이디 사용 여부에 따라 메시지를 표시한다.
+			if(result)
+				$('.console').html('<span style="color: red; font-weight: bold;">이미 사용 중인 아이디 입니다.</span>');
+			else
+				$('.console').html('<span style="color: blue; font-weight: bold;">사용 가능한 아이디 입니다.</span>');
+		}
+	);
+});
+});
+</script>
+</body>
+</html>
+
+<!-- 
+(1) $.ajax()
+   $.ajax({
+      url: "XML파일의 URL",
+      type: "get / post",
+      data: "파라미터 문자열 key=value&key=value", ----- 서버로 보내는 데이터
+      		{ "변수": "값1", "변수": "값2", .. }
+      dataType: "xml",          ---- 서버로부터 반환되는 데이터 타입(안써도 됨)         
+      success: function(data) {  ---- 200(ok)
+         ... 통신이 성공한 경우 실행되는 함수 ...
+      },
+      error: function(err){}    ----404, 405(get방식이 안맞음), 500, 400
+   });
+
+(2) $.get() / $.post()
+   $.get("url", {파라미터 json}, function(data) {
+         ... XML 데이터의 처리 ...
+      }, ["xml"]);
+
+예) 
+var ajax = $.get("url", {파라미터 json}, function(data) {...XML 데이터의 처리...}, ["xml"]);
+
+(3) ajax.fail() / ajax.always() 
+ajax.fail(function() {
+   // 404, 500 에러 등이 발생한 경우 실행될 내용
+});
+
+ajax.always(function() {
+   // 통신 성공, 실패 여부에 상관없이 무조건 마지막에 호출됨(--에러가 나건 안나건 무조건 처리)
+});
+ -->

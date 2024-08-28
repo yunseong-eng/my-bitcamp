@@ -9,25 +9,40 @@
 <body>
 	<h1 class="title">$.ajax() 함수를 사용한 HTML 읽기</h1>
 	<div class="exec">
-		<input type="button" value="txt파일 가져오기" id="mybtn" />
-	</div>
-	<div class="console" id="result"></div>
-	
+		<!-- 버튼을 클릭하면 서버에서 텍스트 파일을 가져옵니다 -->
+	<input type="button" value="txt파일 가져오기" id="mybtn" />
+</div>
+<!-- 서버에서 가져온 데이터를 이 div에 표시합니다 -->
+<div class="console" id="result"></div>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
+// 문서가 모두 로드된 후에 아래 코드를 실행합니다
 $(function(){
+	// 'txt파일 가져오기' 버튼을 클릭하면 실행되는 함수입니다
 	$('#mybtn').click(function(){
+		// 서버에 텍스트 파일을 요청하기 위해 $.ajax() 함수를 사용합니다
 		$.ajax({
-			type: 'get',
-			url: '../text/text02.txt',
-			dataType: 'text',
+			type: 'get',   // 서버에 요청할 방식: GET 방식 사용
+			url: '../text/text02.txt',  // 서버에서 가져올 텍스트 파일의 경로
+			dataType: 'text',   // 서버에서 받을 데이터 형식: 텍스트 형식으로 지정
+			
+			// 요청이 성공하면 실행되는 함수입니다
 			success: function(data){
-				//$('#result').html(data);
-				//$('#result').text(data); 글자 그대로 가져옴
-				$('#result').append(data); //계속 가져오는것
+				// $('#result').html(data); 
+				// 위 코드는 data(가져온 텍스트)를 HTML 형식으로 삽입합니다.
+				
+				// $('#result').text(data); 
+				// 위 코드는 data를 텍스트 형식 그대로 삽입하여 HTML 태그가 적용되지 않습니다.
+				
+				$('#result').append(data); 
+				// 위 코드는 data를 기존 내용에 이어서 추가합니다. 이전 내용을 지우지 않고 계속 쌓입니다.
 			},
+			
+			// 요청이 실패했을 때 실행되는 함수입니다
 			error: function(e){
-				colsole.log(e);
+				// 에러 발생 시, 콘솔에 에러 정보를 출력합니다
+				console.log(e); 
 			}
 		});
 	});

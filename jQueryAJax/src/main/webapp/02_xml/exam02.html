@@ -7,49 +7,60 @@
 <link rel="stylesheet" href="../css/reset.css">
 </head>
 <body>
-	<h1 class="title">$.ajax() 함수를 사용한 XML 데이터 읽기 (2)</h1>
-	<div class="exec">
-		<input type="button" value="XML 데이터 가져오기" id="mybtn" />
-	</div>
-	<div class="console" id="result"></div>
-	
+    <!-- 페이지의 제목을 설정합니다. 이 제목은 웹 페이지의 상단에 큰 글씨로 표시됩니다. -->
+<h1 class="title">$.ajax() 함수를 사용한 XML 데이터 읽기 (2)</h1>
+
+<div class="exec">
+    <!-- 'XML 데이터 가져오기'라는 텍스트를 가진 버튼을 생성합니다. 사용자가 이 버튼을 클릭하면 XML 데이터를 가져옵니다. -->
+    <input type="button" value="XML 데이터 가져오기" id="mybtn" />
+</div>
+
+<!-- 서버에서 가져온 XML 데이터를 표시할 영역입니다. AJAX 요청이 성공하면 이 영역에 결과를 표시합니다. -->
+<div class="console" id="result"></div>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#mybtn').click(function(){
-		$.ajax({
-			type: 'get',
-			url: '../xml/xml02.xml',
-			dataType: 'xml',
-			success: function(data){
-				let subject = $(data).find('subject');
-				console.log(subject.length); //3
-				console.log(subject.children().length); //9
-				console.log(subject.eq(0).find('teacher').text()); //홍길동
-				
-				//for(let i=0; i<subject.length; i++)
-				subject.each(function(){ //3번 반복
-					let title = $(this).find('title').text();
-					let time = $(this).find('time').text();
-					let teacher = $(this).find('teacher').text();
-					
-					let div = `<div>`;
-					div += `<p>` + title + `</p>`;
-					div += `<p>` + time + `</p>`;
-					div += `<p>` + teacher + `</p>`;
-					div += `</div>`;
-					
-					$('#result').append(div).append('<hr/>');
-						
-						
-				}); //each	
-				
-			},
-			error: function(e){
-				console.log(e);
-			}	
-		});
-	});
+    // 문서가 준비되면 실행될 코드를 정의합니다. 페이지가 완전히 로드된 후에 이 코드가 실행됩니다.
+    $('#mybtn').click(function(){
+        // 'mybtn'이라는 id를 가진 버튼을 클릭하면 AJAX 요청을 보냅니다.
+    $.ajax({
+        type: 'get',  // 서버에서 데이터를 가져오는 요청 방식으로 'GET'을 사용합니다.
+        url: '../xml/xml02.xml',  // XML 데이터를 가져올 서버의 URL을 설정합니다.
+        dataType: 'xml',  // 서버로부터 받을 데이터 형식을 'xml'로 설정합니다. XML 형식의 데이터를 받겠다는 의미입니다.
+        success: function(data){
+            // AJAX 요청이 성공적으로 완료되었을 때 호출되는 함수입니다. 'data'는 서버에서 받은 XML 데이터입니다.
+
+        let subject = $(data).find('subject');  // XML 데이터에서 <subject> 태그를 찾아서 'subject' 변수에 저장합니다.
+        console.log(subject.length); // <subject> 태그의 개수를 콘솔에 출력합니다. 예를 들어, 3이 출력됩니다.
+        console.log(subject.children().length); // <subject> 태그 안의 자식 요소 개수를 콘솔에 출력합니다. 예를 들어, 9가 출력됩니다.
+        console.log(subject.eq(0).find('teacher').text()); // 첫 번째 <subject> 태그 안의 <teacher> 태그의 텍스트 내용을 콘솔에 출력합니다. 예를 들어, '홍길동'이 출력됩니다.
+        
+        // 각 <subject> 태그를 반복 처리하여 데이터를 화면에 표시합니다.
+        subject.each(function(){ 
+        // 'subject' 변수에 저장된 모든 <subject> 요소를 순회합니다.
+        let title = $(this).find('title').text();  // 현재 <subject> 태그 안의 <title> 태그의 텍스트 내용을 가져옵니다.
+        let time = $(this).find('time').text();    // 현재 <subject> 태그 안의 <time> 태그의 텍스트 내용을 가져옵니다.
+        let teacher = $(this).find('teacher').text(); // 현재 <subject> 태그 안의 <teacher> 태그의 텍스트 내용을 가져옵니다.
+        
+        // HTML 문자열을 만들어서 각 <subject>의 데이터를 표시할 <div> 요소를 생성합니다.
+        let div = `<div>`;  // 새로운 <div> 요소를 시작합니다.
+        div += `<p>` + title + `</p>`;   // <title> 데이터로 <p> 요소를 생성하여 div에 추가합니다.
+        div += `<p>` + time + `</p>`;    // <time> 데이터로 <p> 요소를 생성하여 div에 추가합니다.
+        div += `<p>` + teacher + `</p>`; // <teacher> 데이터로 <p> 요소를 생성하여 div에 추가합니다.
+        div += `</div>`; // <div> 요소를 닫습니다.
+        
+        // 생성한 <div> 요소를 id가 'result'인 <div>에 추가합니다. 각 <subject> 데이터 사이에 수평선을 추가합니다.
+        $('#result').append(div).append('<hr/>');
+        }); // 각 <subject> 요소에 대해 반복을 종료합니다.
+            
+        },
+        error: function(e){
+            // AJAX 요청이 실패했을 때 호출되는 함수입니다. 오류 정보를 콘솔에 출력하여 문제를 확인할 수 있습니다.
+            console.log(e);
+        }    
+        });
+    });
 });
 </script>
 </body>
