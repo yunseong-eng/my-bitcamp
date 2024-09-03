@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css"> 
+<link rel="stylesheet" href="../css/reset.css"> 
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 JSON데이터 읽기 (1)</h1>
+	<div class="exec">
+    	<input type="button" value="JSON데이터 가져오기" id="mybtn" />
+	</div>
+	
+	<div class="console" id="result"></div>
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#mybtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '../json/json01.json',
+			dataType: 'json', //서버로부터 반환되는 데이터 타입
+			success: function(data){
+				console.log(JSON.stringify(data));
+				
+				let title = data.school.subject.title; //애초에 json이라 이렇게씀
+				let time = data.school.subject.time;
+				let teacher = data.school.subject.teacher;
+				
+				let div = $('<div/>');
+	                
+                // 각각의 데이터를 포함하는 <p> 요소를 생성합니다.
+                // <p> 요소는 HTML에서 단락을 나타내는 태그입니다.
+                let p1 = $('<p/>').html(title);   // <title> 태그의 내용을 <p> 요소에 넣습니다.
+                let p2 = $('<p/>').html(time);    // <time> 태그의 내용을 <p> 요소에 넣습니다.
+                let p3 = $('<p/>').html(teacher); // <teacher> 태그의 내용을 <p> 요소에 넣습니다.
+                
+                // <div> 요소에 <p> 요소들을 추가합니다. 메소드 체인을 사용하여 연속적으로 추가합니다.
+                // 이 방법을 사용하면 코드가 더 간결해집니다.
+               div.append(p1).append(p2).append(p3);
+                
+                
+               
+                
+                // id가 'result'인 <div> 요소에 새로 생성한 <div> 요소를 추가합니다.
+                // 이 작업으로 페이지에 XML 데이터가 표시됩니다.
+                $('#result').append(div);
+	                
+			},
+			error: function(e){
+				console.log(e);		
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>

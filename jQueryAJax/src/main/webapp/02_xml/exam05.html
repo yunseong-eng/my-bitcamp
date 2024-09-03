@@ -87,8 +87,8 @@ h1 {
 		<h1>jQuery Comment</h1>
 		<div id="comment_write">
    			<form id="comment_form">
-       			<input type="text" name="num" id="num" value="">
-       			<input type="text" name="datetime" id="datetime" value="">
+       			<input type="text" name="num" id="num" value="" readonly> <!-- readonly 글작성은 못함 읽기만 -->
+       			<input type="text" name="datetime" id="datetime" value="" readonly>
          		
       		 	<div>
           		 	<label for="writer">작성자</label>
@@ -241,7 +241,9 @@ $(function(){
 	$(document).on('click', '.delete_btn', function(){
 		
 		if(confirm('정말로 삭제하시겠습니까?')){
-			let num = $(this).parents('li').attr('data-num');
+			//let num = $(this).parents('li').attr('data-num');
+			let num = $(this).parents('li').data('data-num');
+			
 			let target = $(this).parents('.comment_item');
 			
 			$.post('../comment/comment_delete.jsp', { 'num': num }, function(data){
@@ -285,7 +287,8 @@ data-*
 </style>
 
  jQuery에서 .data()를 이용해 접근 
--데이터를 가져올 때,
+- 데이터를 가져올 때,
     $(".user").data("name") -- 홍길동 
 
-데이터를 설정할 때,$(".user").data("name", "고길동");-->
+- 데이터를 설정할 때,
+	$(".user").data("name", "고길동");-->

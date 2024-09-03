@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/common.css"> 
+<link rel="stylesheet" href="../css/reset.css"> 
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 JSON데이터 읽기 (2)</h1>
+	<div class="exec">
+    	<input type="button" value="JSON데이터 가져오기" id="mybtn" />
+	</div>
+	
+	<div class="console" id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#mybtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '../json/json02.json',
+			dataType: 'json',
+			success: function(data){
+				console.log(JSON.stringify(data));
+				
+				console.log(data.school.subject);
+				console.log(data.school.subject[0].teacher);  //홍길동
+				/*
+				let subject = data.school.subject;
+				for(let i = 0; i < subject.length; i++){
+					let div = `<div>` +
+							  `<p>${subject[i].title}</p>` +
+							  `<p>${subject[i].time}</p>` +
+							  `<p>${subject[i].teacher}</p>` +
+							  `</div>`;
+					// div를 id="result"에 붙이기
+					$('#result').append(div).append('<br/>');
+				} // for 
+				*/
+				
+				$.each(data.school.subject, function(index, items){
+					let div = `<div>` +
+					  `<p>${items.title}<\p>` +
+					  `<p>` + items.time + `<\p>` +
+					  `<p>` + items.teacher + `<\p>` +
+					  `</div>`;
+			
+				$('#result').append(div).append('<br/>');
+				
+			});//$.each()
+				
+			},
+			error: function(e){
+				console.log(e);		
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

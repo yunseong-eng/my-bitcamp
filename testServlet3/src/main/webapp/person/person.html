@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type ="text/css">
+    a:link{ color: black; text-decoration: none; }
+    a:visited{ color : green; text-decoration: none; }
+    a:hover { color: red; text-decoration: underline; }
+    a:active { color: magenta; text-decoration: none; }
+    #red {color: red}
+    #green {color: green}
+    #blue {color: blue}
+    #magenta {color: magenta}
+    #cyan {color: cyan}
+  </style>
+</head>
+<body>
+<form action="/testServlet3/person-servlet">
+  <table border="1" cellspacing="1" cellpadding="10">
+    <tr>
+      <th width="70">이름</th>
+      <td>
+        <input type="text" name="name" id="" size="20" placeholder="이름 입력"/>
+      </td>
+    </tr>
+
+    <tr>
+      <th>성별</th>
+      <td>
+        <input type ="radio" name="gender" id="gender_m" value="남" checked/>
+        <label for="gender_m">남자</label>
+        <label>
+          <input type="radio" name="gender" value="여"/>
+          여자
+        </label>
+      </td>
+    </tr>
+
+    <tr>
+      <th>색깔</th>
+      <td>
+        <select name="color" style="width: 100px;">
+          <optgroup label="색깔">
+            <option value="red" id="red">빨강</option>
+            <option value="green" id="green">그린</option>
+            <option value="blue" id="blue">파랑</option>
+            <option value="magenta" id="magenta">보라</option>
+            <option value="skyblue" id="skyblue">하늘</option>
+          </optgroup>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th>취미</th>
+      <td>
+        <label>
+          <input type="checkbox" name="hobby" value="독서"/>독서
+        </label>
+        <label>
+          <input type="checkbox" name="hobby" value="영화"/>영화
+        </label>
+        <label>
+          <input type="checkbox" name="hobby" value="음악"/>음악
+        </label>
+        <label>
+          <input type="checkbox" name="hobby" value="게임"/>게임
+        </label>
+        <label>
+          <input type="checkbox" name="hobby" value="운동"/>운동
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>과목</th>
+      <td>
+        <select name="subjects" style="width: 100px" multiple size="5">
+          <option value="JAVA" id="JAVA">JAVA</option>
+          <option value="Servlet" id="Servlet">Servlet</option>
+          <option value="HTML" id="HTML" selected="selected">HTML</option>
+          <option value="Spring" id="Spring">Spring</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2">
+        <input type="submit" value="SEND"/>
+        <input type="reset" value="CANCEL"/>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
