@@ -1,0 +1,154 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-image: url('../image/dog.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* 배경 위에 반투명 흰색 오버레이 설정 */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: -1;
+}
+
+/* 홈 버튼과 회원가입 제목 컨테이너 */
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* 폼과 제목 사이 간격 */
+}
+
+.header-container img {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.header-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* 회원가입 폼 스타일 설정 */
+.join-form {
+    background-color: transparent;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: none;
+    max-width: 670px; /* 폼을 더 넓게 설정 */
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 가로로 배치되는 입력 그룹 스타일 */
+.horizontal-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* 그룹 사이 간격 */
+}
+
+.horizontal-group .join-input {
+    width: 31%; /* 각 입력 필드의 너비 설정 */
+}
+
+/* 입력 필드 스타일 설정 */
+.join-input {
+    padding: 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* 테이블 스타일 설정 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 5px; /* 셀 간격을 줄임 */
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* 제출 버튼 스타일 설정 */
+.btn-submit {
+    background-color: #345159;
+    color: white;
+    border: none;
+    padding: 1rem; /* 버튼의 세로 공간을 줄임 */
+    width: 20%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #FF895A;
+}
+
+/* 재작성 버튼 스타일 설정 */
+.btn-reset {
+    background-color: #777;
+    color: white;
+    border: none;
+    padding: 1rem; /* 버튼의 세로 공간을 줄임 */
+    width: 15%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-reset:hover {
+    background-color: #888;
+}
+
+/* 오류 메시지 스타일 */
+.error-message {
+    color: red;
+    font-size: 8pt;
+    font-weight: bold;
+}
+
+/* 주소 검색 버튼 스타일 */
+button {
+    background-color: #345159;
+    color: white;
+    border: none;
+    padding: 0.4rem; /* 버튼의 세로 공간을 줄임 */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FF895A;
+}
